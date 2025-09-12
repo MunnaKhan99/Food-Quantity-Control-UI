@@ -6,8 +6,8 @@ const QuantityControl = ({ quantity, onIncrement, onDecrement }) => (
       className="decrement"
       onClick={onDecrement}
       disabled={quantity <= 0}
-    >
-      -
+    >  -
+    
     </button>
     <span>{quantity}</span>
     <button className="increment" onClick={onIncrement}>+</button>
