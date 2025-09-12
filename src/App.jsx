@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import MainItemSection from "./components/MainItemSection";
-
+import AddOnSection from "./components/addOnSection";
 import "./App.css";
 
 const App = () => {
   const [foodData, setFoodData] = useState(null);
   const [mainQty, setMainQty] = useState(1);
-
+  const [addOnQty, setAddOnQty] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   useEffect(() => {
     fetch("/foodData.json")
@@ -17,11 +18,33 @@ const App = () => {
         data.addOns.forEach(addOn => {
           initOptions[addOn.name] = []
         })
-        
+        setSelectedOptions(initOptions)
       })
   }, [])
 
+  const handleAddOnQty = (addOnName, qty) => {
+    setAddOnQty(prev => ({
+      ...prev,
+      [addOnName]: qty
+    }))
+  }
 
+  const toggleOption = (addOnName, option) => {
+    setSelectedOptions(prev => {
+      const already = prev[addOnName] || []
+      if (already.includes(option)) {
+        return {
+          ...prev,
+          [addOnName]: already.filter(opt => opt !== option)
+        }
+      } else {
+        return {
+          ...prev,
+          [addOnName]: [...already, option]
+        }
+      }
+    })
+  }
 
   if (!foodData) {
     return <div className="app-container">Loading...</div>
@@ -38,6 +61,17 @@ const App = () => {
         onQuantityChange={setMainQty}
       />
 
+      Add-ons
+      {foodData.addOns.map(addOn => (
+        <AddOnSection
+          key={addOn.name}
+          addOn={addOn}
+          quantity={addOnQty[addOn.name] || 0} 
+          selectedOptions={selectedOptions[addOn.name] || []}
+          onQuantityChange={handleAddOnQty}
+          onOptionToggle={(option) => toggleOption(addOn.name, option)}
+        />
+      ))}
     </div>
   )
 }
