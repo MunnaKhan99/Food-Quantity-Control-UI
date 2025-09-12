@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MainItemSection from "./components/MainItemSection";
 import AddOnSection from "./components/addOnSection";
+import TotalPrice from "./components/TotalPrice";
 import "./App.css";
 
 const App = () => {
@@ -24,8 +25,7 @@ const App = () => {
 
   const handleAddOnQty = (addOnName, qty) => {
     setAddOnQty(prev => ({
-      ...prev,
-      [addOnName]: qty
+      ...prev, [addOnName]: qty
     }))
   }
 
@@ -34,8 +34,7 @@ const App = () => {
       const already = prev[addOnName] || []
       if (already.includes(option)) {
         return {
-          ...prev,
-          [addOnName]: already.filter(opt => opt !== option)
+          ...prev, [addOnName]: already.filter(opt => opt !== option)
         }
       } else {
         return {
@@ -53,25 +52,25 @@ const App = () => {
   return (
     <div className="app-container">
       <h1>Food Order</h1>
-
-      {/* Main item */}
-      <MainItemSection
-        item={foodData.mainItem}
-        quantity={mainQty}
+      <MainItemSection item={foodData.mainItem} quantity={mainQty}
         onQuantityChange={setMainQty}
       />
 
       Add-ons
       {foodData.addOns.map(addOn => (
-        <AddOnSection
-          key={addOn.name}
-          addOn={addOn}
-          quantity={addOnQty[addOn.name] || 0} 
+        <AddOnSection key={addOn.name} addOn={addOn}
+          quantity={addOnQty[addOn.name] || 0}
           selectedOptions={selectedOptions[addOn.name] || []}
           onQuantityChange={handleAddOnQty}
           onOptionToggle={(option) => toggleOption(addOn.name, option)}
         />
       ))}
+
+      <TotalPrice
+        mainItem={foodData.mainItem} mainQuantity={mainQty}
+        addOns={foodData.addOns} addOnQuantities={addOnQty}
+        selectedOptions={selectedOptions}
+      />
     </div>
   )
 }

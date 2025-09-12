@@ -1,176 +1,93 @@
 body {
-  background: linear-gradient(135deg, #e0e7ff, #c3dafe);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background: #f8fafc;
+  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  color: #2d3748;
+  padding: 0;
 }
 
 .app-container {
-  max-width: 450px;
+  width: 400px;
   background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
-}
-
-.app-container:hover {
-  transform: translateY(-5px);
+  padding: 20px;
+  margin: 30px auto;
+  border: 2px solid #4f46e5; 
+  border-radius: 6px;
 }
 
 h1 {
   text-align: center;
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: #1a202c;
-  letter-spacing: 0.5px;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #1e3a8a; 
 }
 
 .main-item,
 .addon-section {
-  border: none;
-  padding: 20px;
-  border-radius: 10px;
-  background: #f9fafb;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.main-item:hover,
-.addon-section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background: #f1f5f9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #94a3b8;
+  border-radius: 5px;
 }
 
 .main-item h2,
 .addon-section h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #1a202c;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #0f172a;
 }
 
 .quantity-control {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .quantity-control button {
-  padding: 8px 16px;
+  padding: 6px 12px;
   border: none;
-  border-radius: 8px;
+  background: #3b82f6; 
+  color: white;
   cursor: pointer;
-  font-size: 18px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
-.quantity-control button.decrement {
-  background: linear-gradient(45deg, #f56565, #e53e3e);
-  color: white;
-}
-
-.quantity-control button.decrement:disabled {
-  background: #d1d5db;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.quantity-control button.increment {
-  background: linear-gradient(45deg, #48bb78, #38a169);
-  color: white;
-}
-
-.quantity-control button:hover:not(:disabled) {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+.quantity-control button:hover {
+  background: #2563eb; 
 }
 
 .quantity-control span {
-  width: 50px;
+  width: 40px;
   text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-  color: #2d3748;
+  display: inline-block;
+  font-weight: bold;
+  color: #1e293b;
 }
 
 .addon-options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .addon-option label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  color: #4a5568;
+  font-size: 14px;
+  color: #374151;
 }
 
 .addon-option input[type="checkbox"] {
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #4a5568;
-  border-radius: 4px;
-  cursor: pointer;
-  position: relative;
+  margin-right: 5px;
+  accent-color: #3b82f6; 
 }
 
-.addon-option input[type="checkbox"]:checked {
-  background-color: #3182ce;
-  border-color: #3182ce;
-}
-
-.addon-option input[type="checkbox"]:checked::after {
-  content: '\2713';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 12px;
-}
-
-
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-  .app-container {
-    padding: 20px;
-    max-width: 100%;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  .main-item h2,
-  .addon-section h3 {
-    font-size: 18px;
-  }
-
-  .quantity-control button {
-    padding: 6px 12px;
-    font-size: 16px;
-  }
-
-  .addon-options {
-    grid-template-columns: 1fr;
-  }
+.total-price {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #3b82f6;
+  background: #eff6ff;
+  border-radius: 5px;
+  color: #1e3a8a;
 }
